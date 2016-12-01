@@ -18,7 +18,22 @@
 
 (defn abs [n] (max n (- n)))
 
-(println (str "Answer 1: " (let [[_ _ x y] end] (+ (abs x) (abs y)))))
+(defn taxicab-distance [x y] (+ (abs x) (abs y)))
 
-  
+(println (str "Answer 1: " (let [[_ _ x y] end] (taxicab-distance x y))))
+
+(defn move-until-back [[dx dy x y visited] m]
+    (let [[ndx ndy nx ny] (move [dx dy x y] m)]
+        (println visited)
+        (if (contains? visited [nx ny])
+         (reduced [ndx ndy nx ny visited])
+         [ndx ndy nx ny (conj visited [nx ny])])))
+
+(def end-2 (reduce move-until-back [0 1 0 0 #{}] (clojure.string/split instructions #", ")))
+
+(println (str "Answer 2: " (let [[_ _ x y] end-2] (taxicab-distance x y))))
+
+         
+
+
 
