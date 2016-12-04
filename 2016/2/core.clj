@@ -17,7 +17,7 @@
 (defn code [[x y]]
     (+ y y y x 1))
 
-(def answer-1 (apply str (map code (reductions line [1 1] lines))))
+(def answer-1 (apply str (map code (rest (reductions line [1 1] lines)))))
 
 
 (println (str "Answer 1: " answer-1))
