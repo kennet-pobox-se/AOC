@@ -11,7 +11,16 @@
         \L [(max 0 (dec x)) y]
         \R [(min 2 (inc x)) y]))
 
-(defn code [x y]
-    (+ 1 (* 3 y) x))
+(defn line [[x y] l]
+    (reduce move [x y] l))
+
+(defn code [[x y]]
+    (+ y y y x 1))
+
+(def answer-1 (apply str (map code (reductions line [1 1] lines))))
+
+
+(println (str "Answer 1: " answer-1))
+
 
     
