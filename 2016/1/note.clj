@@ -42,4 +42,4 @@
     (str "Answer 1: " v)
     (println v))
     
-    
+;(take 10 (map first (iterate (fn [[a b]] (if-let [n (first b)] [(range n) (rest b)])) ['() '(3 7 13 17)])))    
