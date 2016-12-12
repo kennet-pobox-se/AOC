@@ -39,7 +39,7 @@
 (time (->>
     (slurp "instructions.txt")
     clojure.string/split-lines
-    (reductions line [[1 1] keypad-2])
+    (reductions line [[0 2] keypad-2])
     (map first)
     rest
     (map #(get keypad-2 %1))
