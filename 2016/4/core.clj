@@ -14,7 +14,7 @@
 
 (with-test
     (defn valid-room? [{encrypted :encrypted checksum? :checksum}]
-    (= checksum? (checksum encrypted)))
+     (= checksum? (checksum encrypted)))
     (is (valid-room? (parse-room "not-a-real-room-404[oarel]"))))
 
 (with-test
@@ -41,31 +41,31 @@
 (time (run-tests))
 
 (time (->> (slurp "rooms.txt")
-    str/split-lines
-    (map room->id)
-    (filter some?)
-    (reduce +)
-    (str "Answer 1: ")
-    println))
+       str/split-lines
+       (map room->id)
+       (filter some?)
+       (reduce +)
+       (str "Answer 1: ")
+       println))
 
 (time (->> (slurp "rooms.txt")
-    str/split-lines
-    (map parse-room)
-    (filter valid-room?)
-    (map :id)
-    (reduce +)
-    (str "Answer 1 again: ")
-    println))
+       str/split-lines
+       (map parse-room)
+       (filter valid-room?)
+       (map :id)
+       (reduce +)
+       (str "Answer 1 again: ")
+       println))
 
 (time (->> (slurp "rooms.txt")
-    str/split-lines
-    (map parse-room)
-    (filter valid-room?)
-    (map decrypt)
+       str/split-lines
+       (map parse-room)
+       (filter valid-room?)
+       (map decrypt)
     ;(map println)
-    (filter #(= "northpole object storage" (:name %1)))
-    (map :id)
-    (map #(str "Answer 2: " %1))
-    (map println)
-    doall))
+       (filter #(= "northpole object storage" (:name %1)))
+       (map :id)
+       (map #(str "Answer 2: " %1))
+       (map println)
+       doall))
 
